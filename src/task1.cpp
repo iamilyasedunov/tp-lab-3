@@ -1,7 +1,7 @@
 #include "task1.h"
 #include "Circle.h"
 
-double Circle::calcDelta(){
+double calcDelta(){
     double rad_of_Earth = 63781000.0, delta = 1.0; //in metres
     Circle c(rad_of_Earth);
 
@@ -13,7 +13,7 @@ double Circle::calcDelta(){
     return ans - ans/1000;                  //length of the gap
 }
 
-double Circle::calcCost() {
+double calcCost() {
     double width_track = 1.0, rad_of_pool = 3.0;
     double cost_of_track = 1000.0, cost_of_fence = 2000.0;
     Circle c(rad_of_pool);
