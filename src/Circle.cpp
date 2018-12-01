@@ -30,7 +30,7 @@ double Circle::getFerence(){
         else
             return ference;
     }
-Circle::double getArea(){
+double Circle::getArea(){
         //cout<<" area = "<<area/1000;
         if (radius == 10)
             return area  - fmod(area, 314);
