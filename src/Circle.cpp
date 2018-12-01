@@ -1,4 +1,5 @@
 #include "Circle.h"
+#define pi 3.14
 
 Circle::Circle (double rad){
         setRadius(rad);

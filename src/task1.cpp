@@ -1,5 +1,6 @@
 #include "task1.h"
 #include "Circle.h"
+#define pi 3.1415
 
 double calcDelta(){
     double rad_of_Earth = 63781000.0, delta = 1.0; //in metres
