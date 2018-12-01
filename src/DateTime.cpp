@@ -13,7 +13,7 @@ DateTime::DateTime(){
         time_t rawtime;
         time(&rawtime);
         struct tm * Time = localtime(&rawtime);
-        this->sec = mktime(Time);
+        sec = mktime(Time);
 }
 DateTime::DateTime(int new_day, int new_month, int new_year){
         time_t rawtime;
@@ -22,13 +22,13 @@ DateTime::DateTime(int new_day, int new_month, int new_year){
         Time->tm_mday = new_day;
         Time->tm_mon = new_month - 1;
         Time->tm_year = new_year - 1900;
-        this->sec = mktime(Time);
+        sec = mktime(Time);
 }	
 DateTime::DateTime(const DateTime& T){
-        this->sec = T.this->sec;
+        sec = T.sec;
 }
 
-string buildDate(struct tm * Time) {
+DateTime::string buildDate(struct tm * Time) {
         string ans = "";
         if (Time->tm_mday < 10){
             ans = ans + "0";
@@ -36,32 +36,32 @@ string buildDate(struct tm * Time) {
         ans = ans + to_string(Time->tm_mday) + " " + months[Time->tm_mon] + " " + to_string(Time->tm_year + 1900)+ ", " + days[Time->tm_wday];
         return ans;
 }
-string getToday(){
-        time_t in_future = this->sec;
+DateTime::string getToday(){
+        time_t in_future = sec;
         struct tm * Time = localtime(&in_future);
         mktime(Time);
         return buildDate(Time);
 }
-string DateTime::getTomorrow() {
+DateTime::string DateTime::getTomorrow() {
         return getFuture(1);
 }
-string DateTime::getYesterday() {
+DateTime::string DateTime::getYesterday() {
         return getPast(1);
 }
-string getFuture(unsigned int N){
-        time_t in_future = (time_t)N*86400 + this->sec;
+DateTime::string getFuture(unsigned int N){
+        time_t in_future = (time_t)N*86400 + sec;
         struct tm * Time = localtime(&in_future);
         mktime(Time);
         return buildDate(Time);
 }
-string getPast(unsigned int N){
-        time_t in_future = -(time_t)N*86400 + this->sec;
+DateTime::string getPast(unsigned int N){
+        time_t in_future = -(time_t)N*86400 + sec;
         struct tm * Time = localtime(&in_future);
         mktime(Time);
         return buildDate(Time);
 }
-int DateTime::getDifference(DateTime& Time2){
-        time_t this->sec1 = this->sec;
-        time_t this->sec2 = Time2.this->sec;
-        return (int)(abs(this->sec2 - this->sec1)/86400);
+DateTime::int DateTime::getDifference(DateTime& Time2){
+        time_t sec1 = sec;
+        time_t sec2 = Time2.sec;
+        return (int)(abs(sec2 - sec1)/86400);
 }
