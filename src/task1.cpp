@@ -1,4 +1,5 @@
 #include "task1.h"
+#include "Circle.h"
 
 double Circle::calcDelta(){
     double rad_of_Earth = 63781000.0, delta = 1.0; //in metres

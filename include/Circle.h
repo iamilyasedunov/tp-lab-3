@@ -1,13 +1,4 @@
-#include <string>
-#include <algorithm>
-#include <iostream>
-#include <cstdlib>
-#include <iterator>
-#include <queue>
-#include <set>
-#include <cmath>
-#include <string>
-#include <ctime>
+#include "task1.h"
 
 using namespace std;
 
