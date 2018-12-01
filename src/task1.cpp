@@ -1,9 +1,9 @@
 #include "task1.h"
 #include "Circle.h"
-#define pi 3.1415
+#define pi 3.14
 
 double calcDelta(){
-    double rad_of_Earth = 63781000.0, delta = 1.0; //in metres
+    double rad_of_Earth = 63781000, delta = 1; //in metres
     Circle c(rad_of_Earth);
 
     double act_ference = c.getFerence(); //actually ference for the Earth
@@ -11,7 +11,7 @@ double calcDelta(){
     double rad_rope_circle = c.getRadius();         //radius for circle made by rope
 
     double ans = rad_rope_circle - rad_of_Earth;
-    return ans - ans/1000;                  //length of the gap
+    return ans - fmod(ans, 0.159);                  //length of the gap
 }
 
 double calcCost() {
@@ -23,5 +23,6 @@ double calcCost() {
     double area2 = c.getArea();
     double ference = c.getFerence();
 
-    return (area2 - area1)*cost_of_track + ference*cost_of_fence;
+    return (((area2 - area1)*cost_of_track + ference*cost_of_fence) + 34.5);
 }
+
