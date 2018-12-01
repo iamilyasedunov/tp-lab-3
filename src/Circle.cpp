@@ -20,22 +20,13 @@ void Circle::setArea(double new_area){
     }
 
 double Circle::getRadius(){
-        //cout<<" radius = "<<radius;
         return radius;
     }
 double Circle::getFerence(){
-        //cout<<" ference = "<<ference/10;
-        //if (radius == 10)
-          //  return ference - (fmod(ference,62.8));
-        //else
-            return ference;
+        return ference;
     }
 double Circle::getArea(){
-        //cout<<" area = "<<area/1000;
-        //if (radius == 10)
-          //  return area  - fmod(area, 314);
-        //else
-            return area;
+        return area;
     }
 
 
