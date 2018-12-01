@@ -1,7 +1,5 @@
 #include "task1.h"
 
-using namespace std;
-
 class Circle {
 private: // спецификатор доступа private
     double radius, //радиус
