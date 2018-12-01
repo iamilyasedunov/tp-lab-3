@@ -25,16 +25,16 @@ double Circle::getRadius(){
     }
 double Circle::getFerence(){
         //cout<<" ference = "<<ference/10;
-        if (radius == 10)
-            return ference - (fmod(ference,62.8));
-        else
+        //if (radius == 10)
+          //  return ference - (fmod(ference,62.8));
+        //else
             return ference;
     }
 double Circle::getArea(){
         //cout<<" area = "<<area/1000;
-        if (radius == 10)
-            return area  - fmod(area, 314);
-        else
+        //if (radius == 10)
+          //  return area  - fmod(area, 314);
+        //else
             return area;
     }
 
