@@ -28,7 +28,7 @@ DateTime::DateTime(const DateTime& T){
         sec = T.sec;
 }
 
-DateTime::string buildDate(struct tm * Time) {
+string DateTime::buildDate(struct tm * Time) {
         string ans = "";
         if (Time->tm_mday < 10){
             ans = ans + "0";
@@ -36,31 +36,31 @@ DateTime::string buildDate(struct tm * Time) {
         ans = ans + to_string(Time->tm_mday) + " " + months[Time->tm_mon] + " " + to_string(Time->tm_year + 1900)+ ", " + days[Time->tm_wday];
         return ans;
 }
-DateTime::string getToday(){
+string DateTime::getToday(){
         time_t in_future = sec;
         struct tm * Time = localtime(&in_future);
         mktime(Time);
         return buildDate(Time);
 }
-DateTime::string DateTime::getTomorrow() {
+string DateTime::getTomorrow() {
         return getFuture(1);
 }
-DateTime::string DateTime::getYesterday() {
+string DateTime::getYesterday() {
         return getPast(1);
 }
-DateTime::string getFuture(unsigned int N){
+string DateTime::getFuture(unsigned int N){
         time_t in_future = (time_t)N*86400 + sec;
         struct tm * Time = localtime(&in_future);
         mktime(Time);
         return buildDate(Time);
 }
-DateTime::string getPast(unsigned int N){
+string DateTime::getPast(unsigned int N){
         time_t in_future = -(time_t)N*86400 + sec;
         struct tm * Time = localtime(&in_future);
         mktime(Time);
         return buildDate(Time);
 }
-DateTime::int DateTime::getDifference(DateTime& Time2){
+int DateTime::getDifference(DateTime& Time2){
         time_t sec1 = sec;
         time_t sec2 = Time2.sec;
         return (int)(abs(sec2 - sec1)/86400);
