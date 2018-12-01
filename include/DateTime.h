@@ -13,18 +13,13 @@ using namespace std;
 
 class DateTime {
 private:
-    int day;
-    int month;
-    int year;
-    int wday;
     time_t sec;
 public:
-    void Rewrite(struct tm * Time);
     DateTime();
     DateTime(int new_day, int new_month, int new_year);
     DateTime(const DateTime& T);
 
-    string buildDate();
+    string buildDate(struct tm * Time);
 	
     string getToday();
     string getTomorrow();

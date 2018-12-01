@@ -8,19 +8,12 @@ string months[12] = {"january","february","march","april",
                      "september","october","november","december"};
 
 
-void DateTime::Rewrite(struct tm * Time){
-        day = Time->tm_mday;
-        month = Time->tm_mon;
-        year = Time->tm_year + 1900;
-        wday = Time->tm_wday;
-}
+
 DateTime::DateTime(){
         time_t rawtime;
         time(&rawtime);
         struct tm * Time = localtime(&rawtime);
         sec = mktime(Time);
-        cout<<Time->tm_mday<<endl<<Time->tm_mon<<endl;
-        Rewrite(Time);
 }
 DateTime::DateTime(int new_day, int new_month, int new_year){
         time_t rawtime;
@@ -30,26 +23,24 @@ DateTime::DateTime(int new_day, int new_month, int new_year){
         Time->tm_mon = new_month - 1;
         Time->tm_year = new_year - 1900;
         sec = mktime(Time);
-        Rewrite(Time);
 }	
 DateTime::DateTime(const DateTime& T){
-        this->day = T.day;
-        this->month = T.month;
-        this->year = T.year;
-        this->wday = T.wday;
         this->sec = T.sec;
 }
 
-string DateTime::buildDate() {
+string buildDate(struct tm * Time) {
         string ans = "";
-        if (day < 10){
+        if (Time->tm_mday < 10){
             ans = ans + "0";
         }
-        ans = ans + to_string(day) + " " + months[month] + " " + to_string(year)+ ", " + days[wday];
+        ans = ans + to_string(Time->tm_mday) + " " + months[Time->tm_mon] + " " + to_string(Time->tm_year + 1900)+ ", " + days[Time->tm_wday];
         return ans;
 }
-string DateTime::getToday(){
-		return buildDate();
+string getToday(){
+        time_t in_future = sec;
+        struct tm * Time = localtime(&in_future);
+        mktime(Time);
+        return buildDate(Time);
 }
 string DateTime::getTomorrow() {
         return getFuture(1);
@@ -57,19 +48,17 @@ string DateTime::getTomorrow() {
 string DateTime::getYesterday() {
         return getPast(1);
 }
-string DateTime::getFuture(unsigned int N){
+string getFuture(unsigned int N){
         time_t in_future = (time_t)N*86400 + sec;
         struct tm * Time = localtime(&in_future);
-        sec = mktime(Time);
-        Rewrite(Time);
-        return buildDate();
+        mktime(Time);
+        return buildDate(Time);
 }
-string DateTime::getPast(unsigned int N){
+string getPast(unsigned int N){
         time_t in_future = -(time_t)N*86400 + sec;
         struct tm * Time = localtime(&in_future);
-        sec = mktime(Time);
-        Rewrite(Time);
-        return buildDate();
+        mktime(Time);
+        return buildDate(Time);
 }
 int DateTime::getDifference(DateTime& Time2){
         time_t sec1 = sec;
