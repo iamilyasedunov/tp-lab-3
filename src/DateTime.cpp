@@ -30,7 +30,7 @@ DateTime::DateTime(int new_day, int new_month, int new_year){
         Time->tm_mon = new_month - 1;
         Time->tm_year = new_year - 1900;
         sec = mktime(Time);
-        Rewrite(Time)
+        Rewrite(Time);
 }	
 DateTime::DateTime(const DateTime& T){
         this->day = T.day;
