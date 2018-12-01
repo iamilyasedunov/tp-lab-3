@@ -13,7 +13,7 @@ DateTime::DateTime(){
         time_t rawtime;
         time(&rawtime);
         struct tm * Time = localtime(&rawtime);
-        sec = mktime(Time);
+        DateTime::sec = mktime(Time);
 }
 DateTime::DateTime(int new_day, int new_month, int new_year){
         time_t rawtime;
@@ -22,7 +22,7 @@ DateTime::DateTime(int new_day, int new_month, int new_year){
         Time->tm_mday = new_day;
         Time->tm_mon = new_month - 1;
         Time->tm_year = new_year - 1900;
-        sec = mktime(Time);
+        DateTime::sec = mktime(Time);
 }	
 DateTime::DateTime(const DateTime& T){
         this->sec = T.sec;
