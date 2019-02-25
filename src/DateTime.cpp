@@ -37,8 +37,8 @@ string DateTime::buildDate(struct tm * Time) {
         return ans;
 }
 string DateTime::getToday(){
-        time_t in_future = sec;
-        struct tm * Time = localtime(&in_future);
+        time_t today = sec;
+        struct tm * Time = localtime(&today);
         mktime(Time);
         return buildDate(Time);
 }
@@ -55,8 +55,8 @@ string DateTime::getFuture(unsigned int N){
         return buildDate(Time);
 }
 string DateTime::getPast(unsigned int N){
-        time_t in_future = -(time_t)N*86400 + sec;
-        struct tm * Time = localtime(&in_future);
+        time_t in_past = -(time_t)N*86400 + sec;
+        struct tm * Time = localtime(&in_past);
         mktime(Time);
         return buildDate(Time);
 }
